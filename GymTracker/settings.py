@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'GymTracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+with open("postgresSecrets.txt","r") as file:
+    content = file.read()
+
+nm, pwd = content.split()
+#print(name, password, len(name), len(password))
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'gym_workout',
+        'USER': nm,
+        'PASSWORD': pwd,
+        'HOST': 'localhost',  # Or the hostname of your PostgreSQL server
+        'PORT': '5432',       # Default PostgreSQL port
     }
 }
 
