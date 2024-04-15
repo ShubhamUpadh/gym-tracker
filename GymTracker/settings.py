@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'GymTracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-with open("postgresSecrets.txt","r") as file:
+with open(r"GymTracker/postgresSecrets.txt","r") as file:
     content = file.read()
 
 nm, pwd = content.split()
