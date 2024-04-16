@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.hashers import make_password, check_password 
 # Create your models here.
 
 class user_table(models.Model):
@@ -7,6 +7,13 @@ class user_table(models.Model):
     name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.EmailField(max_length=254)
+    password = models.CharField(max_length=128,default='')
+
+    def set_password(self,raw_password):
+        self.password = make_password(raw_password)
+    
+    def check_password(self,raw_password):
+        return check_password(raw_password,self.password)
 
     def __str__(self):
         return self.name + self.phone
